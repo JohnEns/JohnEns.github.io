@@ -9,7 +9,7 @@ let savesEl = document.getElementById("save-el");
 function increment() {
   console.log("The button was clicked");
   count++;
-  console.log(count);
+  // console.log(count);
   countEl.textContent = count;
 }
 
@@ -24,8 +24,8 @@ function save() {
 
   let cntSlut = count + " -";
   savesEl.textContent += ` ${cntSlut}`;
-  console.log("Save is " + count);
-  console.log("cntSlut is " + cntSlut);
+  // console.log("Save is " + count);
+  // console.log("cntSlut is " + cntSlut);
   count = 0;
   countEl.textContent = count;
 }
