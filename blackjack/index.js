@@ -17,12 +17,9 @@ let msg = document.getElementById("message-el");
 let cardEl = document.getElementById("cards");
 let sumEl = document.getElementById("sum");
 
-let winnings;
-
 let player = {
   name: "Player 1",
   chips: 145,
-  gameSaldo: winnings,
 };
 
 let playerEl = document.getElementById("player-el");
