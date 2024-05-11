@@ -16,6 +16,8 @@ body {
   color: #eee;
   background-color: #222;
   /* background-color: #60b347; */
+  display: flex;
+  flex-direction: column;
 }
 
 /* LAYOUT */
