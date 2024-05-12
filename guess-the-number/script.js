@@ -1,5 +1,7 @@
 'use strict';
 
+//TODO Integreer score up en down knoppen voor mobiel!
+
 const winGameSnd = new Audio('win-game.mp3');
 const gameOverSnd = new Audio('game-over.mp3');
 const errorSnd = new Audio('fout.mp3');
