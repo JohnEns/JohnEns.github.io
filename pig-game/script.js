@@ -3,12 +3,12 @@
 // TODO Reverse current & total score
 
 // Setting up sounds
-const sndWinGame = new Audio('snd/win-game.mp3');
+const sndWinGame = new Audio('/snd/win-game.mp3');
 const sndGameOver = new Audio('/snd/game-over.mp3');
-const sndError = new Audio('snd/fout.mp3');
-const sndSwitchPlayer = new Audio('snd/yoink.mp3');
-const sndRollDice = new Audio('snd/dice-rolling.mp3');
-const sndNewGame = new Audio('snd/newGame.mp3');
+const sndError = new Audio('/snd/fout.mp3');
+const sndSwitchPlayer = new Audio('/snd/yoink.mp3');
+const sndRollDice = new Audio('/snd/dice-rolling.mp3');
+const sndNewGame = new Audio('/snd/newGame.mp3');
 
 // Selecting Elements
 const elScore0 = document.getElementById('score--0');
