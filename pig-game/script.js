@@ -46,7 +46,7 @@ function roll() {
     showDice();
     sndRollDice.play();
     console.log(die);
-    elDice.src = `/img/dice-${die}.png`;
+    elDice.src = `img/dice-${die}.png`;
 
     if (die === 1) {
       switchPlayer();
