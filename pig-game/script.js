@@ -44,7 +44,7 @@ function roll() {
   if (playing) {
     const die = Math.ceil(Math.random() * 6);
     showDice();
-    sndRollDice.play();
+    // sndRollDice.play();
     console.log(die);
     elDice.src = `img/dice-${die}.png`;
 
@@ -68,7 +68,7 @@ function roll() {
 
 function switchPlayer() {
   console.log('Player switched!!');
-  sndSwitchPlayer.play();
+  // sndSwitchPlayer.play();
   activePlayerBoolean = !activePlayerBoolean;
   document.getElementById(`current--${activePlayer}`).textContent = 0;
 
@@ -141,7 +141,7 @@ function playerWins() {
   document
     .querySelector(`.player--${activePlayer}`)
     .classList.remove('player--active');
-  sndWinGame.play();
+  // sndWinGame.play();
 }
 console.log(elDice);
 
@@ -171,7 +171,7 @@ function initGame() {
 initGame();
 
 btnNewGame.addEventListener('click', function () {
-  sndNewGame.play();
+  // sndNewGame.play();
   initGame();
 });
 btnRoll.addEventListener('click', roll);
