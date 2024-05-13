@@ -18,7 +18,7 @@ const sndGameOver = new Audio('game-over.mp3');
 const sndError = new Audio('fout.mp3');
 const sndSwitchPlayer = new Audio('yoink.mp3');
 const sndRollDice = new Audio('dice-rolling.mp3');
-const sndNewGame = new Audio('/newGame.mp3');
+const sndNewGame = new Audio('newGame.mp3');
 
 // Selecting Elements
 const elScore0 = document.getElementById('score--0');
