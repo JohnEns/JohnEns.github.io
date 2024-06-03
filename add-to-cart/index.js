@@ -54,6 +54,9 @@ function clearInputFieldEl() {
   inputField.value = "";
 }
 
+let clickCount = 0;
+let clickTimeout;
+
 function addToDomList(item) {
   let itemID = item[0];
   let itemValue = item[1];
@@ -63,11 +66,21 @@ function addToDomList(item) {
   newEl.tabIndex = 0;
   newEl.textContent = itemValue;
   newEl.addEventListener("click", function () {
-    newEl.classList.toggle("obscure");
+    clickCount++;
+
+    if (clickCount === 3) {
+      clickCount = 0; // Reset the counter
+      clearTimeout(clickTimeout);
+      let exactLocationOfItemInDB = ref(database, `shoppingList/${itemID}`);
+      remove(exactLocationOfItemInDB);
+    } else {
+      clickTimeout = setTimeout(() => {
+        clickCount = 0; // Reset the counter after a timeout
+      }, 400); // 400ms timeout for triple click
+    }
   });
   newEl.addEventListener("dblclick", function () {
-    let exactLocationOfItemInDB = ref(database, `shoppingList/${itemID}`);
-    remove(exactLocationOfItemInDB);
+    newEl.classList.toggle("obscure");
     // console.log(exactLocationOfItemInDB);
   });
 
