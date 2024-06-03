@@ -62,6 +62,9 @@ function addToDomList(item) {
   const newEl = document.createElement("li");
   newEl.tabIndex = 0;
   newEl.textContent = itemValue;
+  newEl.addEventListener("click", function () {
+    newEl.classList.toggle("obscure");
+  });
   newEl.addEventListener("dblclick", function () {
     let exactLocationOfItemInDB = ref(database, `shoppingList/${itemID}`);
     remove(exactLocationOfItemInDB);
