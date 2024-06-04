@@ -118,7 +118,7 @@ inputField.addEventListener("keypress", function (event) {
 */
 
 inputField.addEventListener("keydown", function (event) {
-  if (event.key === "Enter" || event.keyCode === 13) {
+  if (event.key === "Enter") {
     let inputValue = inputField.value;
     push(shoppingListInDB, inputValue);
     clearInputFieldEl();
