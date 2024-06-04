@@ -62,12 +62,16 @@ let clickTimeout;
 function addToDomList(item) {
   let itemID = item[0];
   let itemValue = item[1];
+  let pressTimer;
+  const longPressThreshold = 1000; // 1000ms = 1 second
 
   // shList.innerHTML += `<li>${item}</li>`;
   const newEl = document.createElement("li");
   newEl.tabIndex = 0;
   newEl.textContent = itemValue;
+  /*
   newEl.addEventListener("click", function () {
+    // Remove item at 3 clicks
     clickCount++;
 
     if (clickCount === 3) {
@@ -81,8 +85,24 @@ function addToDomList(item) {
       }, 400); // 400ms timeout for triple click
     }
   });
+*/
+  newEl.addEventListener("touchstart", function () {
+    pressTimer = setTimeout(() => {
+      let exactLocationOfItemInDB = ref(database, `shoppingList/${itemID}`);
+      remove(exactLocationOfItemInDB);
+    }, longPressThreshold);
+  });
+
+  newEl.addEventListener("touchend", function () {
+    clearTimeout(pressTimer);
+  });
+
+  newEl.addEventListener("touchcancel", function () {
+    clearTimeout(pressTimer);
+  });
 
   newEl.addEventListener("dblclick", async function () {
+    // instellen Obscure functionaliteit
     //  check staat key
     if (itemID.startsWith("-")) {
       await changeKeyToOb(itemID);
@@ -99,6 +119,7 @@ function addToDomList(item) {
 }
 
 addButton.addEventListener("click", function () {
+  // Enter data with Button
   let inputValue = inputField.value;
   console.log(inputValue);
 
@@ -118,6 +139,7 @@ inputField.addEventListener("keypress", function (event) {
 */
 
 inputField.addEventListener("keydown", function (event) {
+  // Enter data with enter key
   if (event.key === "Enter") {
     let inputValue = inputField.value;
     push(shoppingListInDB, inputValue);
