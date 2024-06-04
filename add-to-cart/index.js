@@ -141,12 +141,12 @@ async function changeKeyToOb(oldKey) {
 
   const oldRef = ref(db, `shoppingList/${oldKey}`);
   console.log(oldRef);
-  const snapshot = await get(oldRef);
+  const snapshot = await get(oldRef); // Wait for data retrieval
   if (snapshot.exists()) {
     const data = snapshot.val();
     const newRef = ref(db, `shoppingList/${newKey}`);
-    await set(newRef, data);
-    await remove(oldRef);
+    await set(newRef, data); // Wait for data to be set
+    await remove(oldRef); // Wait for old data to be removed
     console.log("Key changed successfully");
   } else {
     console.log("No data found at the old key");
@@ -157,12 +157,12 @@ async function resetKeyToWithoutOb(newKey) {
   const db = getDatabase();
   const oldKey = "-" + newKey.slice(2);
   const newRef = ref(db, `shoppingList/${newKey}`);
-  const snapshot = await get(newRef);
+  const snapshot = await get(newRef); // Wait for data retrieval
   if (snapshot.exists()) {
     const data = snapshot.val();
     const oldRef = ref(db, `shoppingList/${oldKey}`);
-    await set(oldRef, data);
-    await remove(newRef);
+    await set(oldRef, data); // Wait for data to be set
+    await remove(newRef); // Wait for new data to be removed
     console.log("Key reset successfully");
   } else {
     console.log("No data found at the new key");
