@@ -2,9 +2,11 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebas
 import {
   getDatabase,
   ref,
+  get,
   push,
   onValue,
   remove,
+  set,
 } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
 
 const appSettings = {
@@ -79,11 +81,20 @@ function addToDomList(item) {
       }, 400); // 400ms timeout for triple click
     }
   });
-  newEl.addEventListener("dblclick", function () {
-    newEl.classList.toggle("obscure");
-    // console.log(exactLocationOfItemInDB);
+
+  newEl.addEventListener("dblclick", async function () {
+    //  check staat key
+    if (itemID.startsWith("-")) {
+      await changeKeyToOb(itemID);
+    } else {
+      await resetKeyToWithoutOb(itemID);
+    }
+    // newEl.classList.toggle("obscure");
   });
 
+  if (itemID.startsWith("ob")) {
+    newEl.classList.add("obscure");
+  }
   shList.append(newEl);
 }
 
@@ -97,12 +108,60 @@ addButton.addEventListener("click", function () {
   // Challenge: Append a new <li> with text content inputValue to the 'shopping-list' <ul>
 });
 
+inputField.addEventListener("keypress", function (event) {
+  if (event.key === "Enter") {
+    let inputValue = inputField.value;
+    push(shoppingListInDB, inputValue);
+    clearInputFieldEl();
+  }
+});
+
 function clearShoppingListEl() {
   shList.innerHTML = "";
 }
 
+async function changeKeyToOb(oldKey) {
+  const db = getDatabase();
+  console.log(oldKey);
+
+  // Create the new key by replacing the first character with "ob"
+  const newKey = "ob" + oldKey.slice(1);
+  console.log(`dit is de newkey ${newKey}`);
+
+  //   let exactLocationOfItemInDB = ref(database, `shoppingList/${itemID}`);
+
+  const oldRef = ref(db, `shoppingList/${oldKey}`);
+  console.log(oldRef);
+  const snapshot = await get(oldRef);
+  if (snapshot.exists()) {
+    const data = snapshot.val();
+    const newRef = ref(db, `shoppingList/${newKey}`);
+    await set(newRef, data);
+    await remove(oldRef);
+    console.log("Key changed successfully");
+  } else {
+    console.log("No data found at the old key");
+  }
+}
+
+async function resetKeyToWithoutOb(newKey) {
+  const db = getDatabase();
+  const oldKey = "-" + newKey.slice(2);
+  const newRef = ref(db, `shoppingList/${newKey}`);
+  const snapshot = await get(newRef);
+  if (snapshot.exists()) {
+    const data = snapshot.val();
+    const oldRef = ref(db, `shoppingList/${oldKey}`);
+    await set(oldRef, data);
+    await remove(newRef);
+    console.log("Key reset successfully");
+  } else {
+    console.log("No data found at the new key");
+  }
+}
 /*
 
+// TODO
 De input met Enter key invoeren. Code werkt nog niet.
 
 inputField.addEventListener("keypress", enterKey);
