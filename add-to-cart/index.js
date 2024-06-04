@@ -107,9 +107,18 @@ addButton.addEventListener("click", function () {
   // addToDomList(inputValue);
   // Challenge: Append a new <li> with text content inputValue to the 'shopping-list' <ul>
 });
-
+/*
 inputField.addEventListener("keypress", function (event) {
   if (event.key === "Enter") {
+    let inputValue = inputField.value;
+    push(shoppingListInDB, inputValue);
+    clearInputFieldEl();
+  }
+});
+*/
+
+inputField.addEventListener("keydown", function (event) {
+  if (event.key === "Enter" || event.keyCode === 13) {
     let inputValue = inputField.value;
     push(shoppingListInDB, inputValue);
     clearInputFieldEl();
