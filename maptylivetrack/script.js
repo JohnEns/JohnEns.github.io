@@ -215,10 +215,11 @@ class App {
       route.addLatLng(latlng);
       this._map.setView(latlng, this._map.getZoom());
       L.marker(latlng).addTo(this._map);
+      console.log('Checked location!');
     }
 
     function onLocationError(e) {
-      e.message = 'Unknown error detected.';
+      e.message = 'Unknown error fetching location detected.';
 
       alert(e.message);
     }
