@@ -20,7 +20,7 @@ function onLocationFound(e) {
   route.addLatLng(latlng); // Add point to the polyline
   map.setView(latlng, map.getZoom()); // Center the map on the new location
   L.marker(latlng).addTo(map); // Add a marker at the new location
-  message.innerHTML += `Lat Lon: ${latlng}<br>`;
+  countLoc > 4 ? (message.innerHTML += `Lat Lon: ${latlng}<br>`) : 1 + 2;
 }
 
 function onLocationError(e) {
@@ -90,8 +90,8 @@ if (navigator.geolocation) {
           setView: true,
           watch: true,
           enableHighAccuracy: true,
-          maximumAge: 0, // Don't use cached positions
-          timeout: 10000, // Maximum time to wait for a position (ms)
+          //   maximumAge: 0, // Don't use cached positions
+          //   timeout: 10000, // Maximum time to wait for a position (ms)
         });
         map.on("locationfound", onLocationFound);
         map.on("locationerror", onLocationError);
