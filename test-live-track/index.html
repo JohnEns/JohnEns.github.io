@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simulate Route on Leaflet Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+      #map {
+        height: 500px;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+      // Initialize the map
+      //   Test data Rotterdam Zuid
+      //   const map = L.map("map").setView([51.878, 4.499], 16);
+
+      let map;
+      let route;
+
+      // Define the onLocationFound function
+      function onLocationFound(e) {
+        const latlng = e.latlng;
+        route.addLatLng(latlng); // Add point to the polyline
+        map.setView(latlng, map.getZoom()); // Center the map on the new location
+        L.marker(latlng).addTo(map); // Add a marker at the new location
+      }
+
+      function onLocationError(e) {
+        e.message = `Sorry, location fetching went wrong. 😢`;
+        alert(e.message);
+      }
+
+      // Geolocation API
+      if (navigator.geolocation) {
+        console.log(navigator.geolocation);
+        console.log(this);
+        // console.log(navigator.geolocation.getCurrentPosition);
+
+        //1st arg = succes; 2nd arg = ERROR
+        navigator.geolocation.getCurrentPosition(
+          function (position) {
+            const { latitude } = position.coords;
+            const { longitude } = position.coords;
+            // console.log(latitude, longitude);
+            // console.log(`https://www.google.com/maps/@${latitude},${longitude}`);
+
+            const coords = [latitude, longitude];
+            // console.log(this);
+            map = L.map("map").setView(coords, 16);
+
+            // Add tile layer to the map
+            L.tileLayer("https://tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
+              attribution:
+                '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            }).addTo(map);
+            console.log(map);
+
+            // Initialize an empty polyline for the route
+            route = L.polyline([], { color: "blue" }).addTo(map);
+
+            // Simulated route data (an array of latitude and longitude objects)
+            const testRoute = [
+              { lat: 51.879, lng: 4.499 },
+              { lat: 51.88, lng: 4.496 },
+              { lat: 51.881, lng: 4.491 },
+              { lat: 51.88, lng: 4.485 },
+              { lat: 51.88, lng: 4.483 },
+            ];
+            console.log(map);
+
+            // Live tracking func
+            function liveTrack(map) {
+              {
+                console.log(map);
+                map.locate({
+                  setView: true,
+                  watch: true,
+                  enableHighAccuracy: true,
+                });
+                map.on("locationfound", onLocationFound);
+                map.on("locationerror", onLocationError);
+              }
+            }
+
+            // Function to simulate location updates with a delay
+            function simulateRoute(routePoints, delay = 1000) {
+              let index = 0;
+              const intervalId = setInterval(() => {
+                if (index < routePoints.length) {
+                  const e = { latlng: routePoints[index] };
+                  onLocationFound(e); // Call onLocationFound with the simulated location
+                  index++;
+                } else {
+                  clearInterval(intervalId); // Stop the simulation when all points are done
+                }
+              }, delay); // Delay between points
+            }
+            console.log(map);
+
+            // Start the simulation
+            simulateRoute(testRoute);
+            liveTrack(map);
+          },
+          function () {
+            alert(`Could not get your location.`);
+          }
+        );
+      }
+
+      console.log(map);
+      if (map) {
+        console.log(map);
+        map.locate({ setView: true, watch: true, enableHighAccuracy: true });
+        map.on("locationfound", onLocationFound);
+        map.on("locationerror", onLocationError);
+      }
+      //   Test data LONDON
+      //   const map = L.map("map").setView([51.505, -0.09], 13);
+    </script>
+  </body>
+</html>

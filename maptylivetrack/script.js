@@ -224,7 +224,32 @@ class App {
       alert(e.message);
     }
 
-    this._map.locate({ setView: true, watch: true, enableHighAccuracy: true });
+    // Define your test data (array of latlng points)
+    const testRoute = [
+      { lat: 51.505, lng: -0.09 },
+      { lat: 51.506, lng: -0.091 },
+      { lat: 51.507, lng: -0.092 },
+      { lat: 51.508, lng: -0.093 },
+    ];
+
+    // Function to simulate location updates
+    function simulateRoute(routePoints, delay = 1000) {
+      let index = 0;
+      const intervalId = setInterval(() => {
+        if (index < routePoints.length) {
+          const e = { latlng: routePoints[index] };
+          onLocationFound(e);
+          index++;
+        } else {
+          clearInterval(intervalId); // Stop the simulation when done
+        }
+      }, delay); // Set a delay between points
+    }
+
+    // Call the simulation function with your test data
+    simulateRoute(testRoute);
+
+    // this._map.locate({ setView: true, watch: true, enableHighAccuracy: true }); //TODO
     this._map.on('locationfound', onLocationFound.bind(this));
     this._map.on('locationerror', onLocationError.bind(this));
 
