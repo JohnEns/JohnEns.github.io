@@ -8,6 +8,7 @@ const message = document.querySelector(".message");
 let map;
 let route;
 let countLoc = 0;
+const minDistance = 2; // meters
 
 // Define the onLocationFound function
 function onLocationFound(e) {
@@ -16,7 +17,16 @@ function onLocationFound(e) {
     console.log("Location found!");
     message.innerHTML += `Location found! Teller:${countLoc}<br>`;
   }
+
   const latlng = e.latlng;
+
+  //   Filter out small movements
+  if (route.getLatLngs().length > 0) {
+    const lastLatLng = route.getLatLngs()[route.getLatLngs().length - 1];
+    const distance = haversineDistance(lastLatLng, latlng);
+
+    if (distance < minDistance) return; // Ignore small movements
+  }
   route.addLatLng(latlng); // Add point to the polyline
   map.setView(latlng, map.getZoom()); // Center the map on the new location
   L.marker(latlng).addTo(map); // Add a marker at the new location
@@ -26,6 +36,25 @@ function onLocationFound(e) {
 function onLocationError(e) {
   e.message = `Sorry, location fetching went wrong. 😢`;
   alert(e.message);
+}
+
+//  Check Coordinate Calculations:
+function haversineDistance(coords1, coords2) {
+  const R = 6371e3; // Earth radius in meters
+  const lat1 = (coords1.lat * Math.PI) / 180;
+  const lat2 = (coords2.lat * Math.PI) / 180;
+  const deltaLat = ((coords2.lat - coords1.lat) * Math.PI) / 180;
+  const deltaLng = ((coords2.lng - coords1.lng) * Math.PI) / 180;
+
+  const a =
+    Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) +
+    Math.cos(lat1) *
+      Math.cos(lat2) *
+      Math.sin(deltaLng / 2) *
+      Math.sin(deltaLng / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+  return R * c; // Distance in meters
 }
 
 // Geolocation API
