@@ -20,6 +20,7 @@ function onLocationFound(e) {
   route.addLatLng(latlng); // Add point to the polyline
   map.setView(latlng, map.getZoom()); // Center the map on the new location
   L.marker(latlng).addTo(map); // Add a marker at the new location
+  message.innerHTML += `Lat Lon: ${latlng}<br>`;
 }
 
 function onLocationError(e) {
@@ -95,6 +96,7 @@ if (navigator.geolocation) {
         map.on("locationfound", onLocationFound);
         map.on("locationerror", onLocationError);
         console.log("gelukt..");
+        message.innerHTML += `Live location found! Teller:${countLoc}<br>`;
       }
 
       // Start the simulation
