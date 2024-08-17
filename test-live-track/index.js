@@ -1,6 +1,10 @@
 "use strict";
 
 const message = document.querySelector(".message");
+const butStartTracking = document.getElementById("startTracking");
+const butStopTracking = document.getElementById("stopTracking");
+const stepsDisplay = document.getElementById("totalSteps");
+
 // Initialize the map
 //   Test data Rotterdam Zuid
 //   const map = L.map("map").setView([51.878, 4.499], 16);
@@ -8,10 +12,36 @@ const message = document.querySelector(".message");
 let map;
 let route;
 let countLoc = 0;
-const minDistance = 2; // meters
+let trackingEnabled = false;
+let totalDistance = 0;
+const averageStrideLength = 0.6604; // Average stride length in meters (0.6604 meters gemiddelde vrouw) man 0.7874 TODO
+const minDistance = 2; // meters (Voor haversine)
+
+// Add eventListeners
+butStartTracking.addEventListener("click", function () {
+  trackingEnabled = true;
+  message.innerHTML += "Tracking started<br>";
+  console.log("Tracking started");
+});
+
+butStopTracking.addEventListener("click", function () {
+  trackingEnabled = false;
+  message.innerHTML += "Tracking stopped<br>";
+  console.log("Tracking stopped");
+});
+
+//  Calc the distance between route markers
+function calculateDistance(latlng1, latlng2) {
+  return map.distance(latlng1, latlng2);
+}
+
+function calculateSteps(distance) {
+  return Math.round(distance / averageStrideLength);
+}
 
 // Define the onLocationFound function
 function onLocationFound(e) {
+  if (!trackingEnabled) return;
   countLoc++;
   if (countLoc > 4) {
     console.log("Location found!");
@@ -19,6 +49,10 @@ function onLocationFound(e) {
   }
 
   const latlng = e.latlng;
+  const lastLatLng =
+    route.getLatLngs().length > 0
+      ? route.getLatLngs()[route.getLatLngs().length - 1]
+      : null;
 
   //   Filter out small movements
   if (route.getLatLngs().length > 0) {
@@ -27,15 +61,23 @@ function onLocationFound(e) {
 
     if (distance < minDistance) return; // Ignore small movements
   }
+
+  if (lastLatLng) {
+    const distance = calculateDistance(lastLatLng, latlng);
+    totalDistance += distance;
+  }
+
   route.addLatLng(latlng); // Add point to the polyline
   map.setView(latlng, map.getZoom()); // Center the map on the new location
   L.marker(latlng).addTo(map); // Add a marker at the new location
   countLoc > 4 ? (message.innerHTML += `Lat Lon: ${latlng}<br>`) : 1 + 2;
+
+  const totalSteps = calculateSteps(totalDistance);
+  stepsDisplay.textContent = totalSteps;
 }
 
 function onLocationError(e) {
-  e.message = `Sorry, location fetching went wrong. 😢`;
-  alert(e.message);
+  alert(`Sorry, location fetching went wrong. 😢`);
 }
 
 //  Check Coordinate Calculations:
