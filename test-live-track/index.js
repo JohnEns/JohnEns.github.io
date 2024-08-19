@@ -4,6 +4,7 @@ const message = document.querySelector(".message");
 const butStartTracking = document.getElementById("startTracking");
 const butStopTracking = document.getElementById("stopTracking");
 const stepsDisplay = document.getElementById("totalSteps");
+const caloriesDisplay = document.getElementById("caloriesBurned");
 
 // Initialize the map
 //   Test data Rotterdam Zuid
@@ -15,18 +16,26 @@ let countLoc = 0;
 let trackingEnabled = false;
 let totalDistance = 0;
 const averageStrideLength = 0.6604; // Average stride length in meters (0.6604 meters gemiddelde vrouw) man 0.7874 TODO
-const minDistance = 2; // meters (Voor haversine)
+const minDistance = 5; // meters (Voor haversine)
+const userWeight = 70; // User's weight in kg (adjust based on actual user data)
+const MET = 3.8; // MET value for walking at a moderate pace
 
 // Add eventListeners
 butStartTracking.addEventListener("click", function () {
   trackingEnabled = true;
+  totalDistance = 0;
+  stepsDisplay.textContent = 0; // Reset steps display
+  caloriesDisplay.textContent = 0; // Reset calories display
   message.innerHTML += "Tracking started<br>";
   console.log("Tracking started");
 });
 
 butStopTracking.addEventListener("click", function () {
   trackingEnabled = false;
-  message.innerHTML += "Tracking stopped<br>";
+  message.innerHTML += `Tracking stopped. Total steps: ${Math.round(
+    totalDistance
+  )}.<br>`;
+  totalDistance = 0;
   console.log("Tracking stopped");
 });
 
@@ -37,6 +46,13 @@ function calculateDistance(latlng1, latlng2) {
 
 function calculateSteps(distance) {
   return Math.round(distance / averageStrideLength);
+}
+
+function calculateCalories(distance) {
+  const distanceInKm = distance / 1000; // Convert distance to kilometers
+  const speed = 5; // Average walking speed in km/h
+  const timeInHours = distanceInKm / speed;
+  return Math.round(MET * userWeight * timeInHours);
 }
 
 // Define the onLocationFound function
@@ -73,7 +89,10 @@ function onLocationFound(e) {
   countLoc > 4 ? (message.innerHTML += `Lat Lon: ${latlng}<br>`) : 1 + 2;
 
   const totalSteps = calculateSteps(totalDistance);
+  const caloriesBurned = calculateCalories(totalDistance);
+
   stepsDisplay.textContent = totalSteps;
+  caloriesDisplay.textContent = caloriesBurned;
 }
 
 function onLocationError(e) {
