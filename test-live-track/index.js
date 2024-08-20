@@ -252,11 +252,11 @@ if (navigator.geolocation) {
           watch: true,
           enableHighAccuracy: true,
           maximumAge: 5000, // Don't use cached positions
-          timeout: 10000, // Maximum time to wait for a position (ms)
+          timeout: 8000, // Maximum time to wait for a position (ms)
         });
         map.on("locationfound", onLocationFound);
         map.on("locationerror", onLocationError);
-        console.log("gelukt..");
+        // console.log("gelukt..");
         message.innerHTML += `Live location found! Teller:${countLoc}<br>`;
       }
 
