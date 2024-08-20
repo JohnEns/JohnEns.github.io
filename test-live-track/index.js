@@ -7,6 +7,7 @@ const stepsDisplay = document.getElementById("totalSteps");
 const caloriesDisplay = document.getElementById("caloriesBurnedSpan");
 const inputMinDistance = document.querySelector(".form__input--distance");
 const form = document.querySelector(".form");
+const hMinDistanceShow = document.getElementById("hDistance");
 
 // Initialize the map
 //   Test data Rotterdam Zuid
@@ -24,6 +25,7 @@ let burnCalories = 0;
 
 const averageStrideLength = 0.6604; // Average stride length in meters (0.6604 meters gemiddelde vrouw) man 0.7874 TODO
 let minDistance = 9; // meters (Voor haversine)
+hMinDistanceShow.innerHTML = minDistance;
 const userWeight = 80; // User's weight in kg (adjust based on actual user data)
 const userHeight = 161; // User's height in cm
 const userAge = 52; // User's age in years
@@ -74,6 +76,7 @@ function changeMinDistance(e) {
     inputMinDistance.value = "";
   }
   minDistance = input;
+  hMinDistanceShow.innerHTML = minDistance;
   message.innerHTML += `Min distance changed to ${inputMinDistance.value}<br>`;
   inputMinDistance.value = "";
 }
