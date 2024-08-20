@@ -5,6 +5,8 @@ const butStartTracking = document.getElementById("startTracking");
 const butStopTracking = document.getElementById("stopTracking");
 const stepsDisplay = document.getElementById("totalSteps");
 const caloriesDisplay = document.getElementById("caloriesBurnedSpan");
+const inputMinDistance = document.querySelector(".form__input--distance");
+const form = document.querySelector(".form");
 
 // Initialize the map
 //   Test data Rotterdam Zuid
@@ -21,7 +23,7 @@ let lastTime = null;
 let burnCalories = 0;
 
 const averageStrideLength = 0.6604; // Average stride length in meters (0.6604 meters gemiddelde vrouw) man 0.7874 TODO
-const minDistance = 9; // meters (Voor haversine)
+let minDistance = 9; // meters (Voor haversine)
 const userWeight = 80; // User's weight in kg (adjust based on actual user data)
 const userHeight = 161; // User's height in cm
 const userAge = 52; // User's age in years
@@ -60,6 +62,21 @@ butStopTracking.addEventListener("click", function () {
 
   console.log("Tracking stopped");
 });
+
+form.addEventListener("submit", changeMinDistance);
+
+function changeMinDistance(e) {
+  e.preventDefault();
+
+  const input = +inputMinDistance.value;
+  if (!Number.isFinite(input) || input <= 0) {
+    message.innerHTML += `Invalid input ${input} given. Need positive number.`;
+    inputMinDistance.value = "";
+  }
+  minDistance = input;
+  message.innerHTML += `Min distance changed to ${inputMinDistance.value}<br>`;
+  inputMinDistance.value = "";
+}
 
 // Calc BMR for calorie measurement
 function calculateBMR(weight, height, age, gender) {
