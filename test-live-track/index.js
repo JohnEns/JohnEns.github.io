@@ -21,7 +21,7 @@ let lastTime = null;
 let burnCalories = 0;
 
 const averageStrideLength = 0.6604; // Average stride length in meters (0.6604 meters gemiddelde vrouw) man 0.7874 TODO
-const minDistance = 5; // meters (Voor haversine)
+const minDistance = 9; // meters (Voor haversine)
 const userWeight = 80; // User's weight in kg (adjust based on actual user data)
 const userHeight = 161; // User's height in cm
 const userAge = 52; // User's age in years
