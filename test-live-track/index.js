@@ -251,8 +251,8 @@ if (navigator.geolocation) {
           setView: true,
           watch: true,
           enableHighAccuracy: true,
-          //   maximumAge: 0, // Don't use cached positions
-          //   timeout: 10000, // Maximum time to wait for a position (ms)
+          maximumAge: 5000, // Don't use cached positions
+          timeout: 10000, // Maximum time to wait for a position (ms)
         });
         map.on("locationfound", onLocationFound);
         map.on("locationerror", onLocationError);
