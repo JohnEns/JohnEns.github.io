@@ -4,7 +4,7 @@ const message = document.querySelector(".message");
 const butStartTracking = document.getElementById("startTracking");
 const butStopTracking = document.getElementById("stopTracking");
 const stepsDisplay = document.getElementById("totalSteps");
-const caloriesDisplay = document.getElementById("caloriesBurned");
+const caloriesDisplay = document.getElementById("caloriesBurnedSpan");
 
 // Initialize the map
 //   Test data Rotterdam Zuid
@@ -18,11 +18,12 @@ let trackingEnabled = false;
 let totalDistance = 0;
 let lastLatLng = null;
 let lastTime = null;
+let burnCalories = 0;
 
 const averageStrideLength = 0.6604; // Average stride length in meters (0.6604 meters gemiddelde vrouw) man 0.7874 TODO
 const minDistance = 5; // meters (Voor haversine)
 const userWeight = 80; // User's weight in kg (adjust based on actual user data)
-const userHeight = 162; // User's height in cm
+const userHeight = 161; // User's height in cm
 const userAge = 52; // User's age in years
 const gender = "female"; // or "male"
 
@@ -56,7 +57,7 @@ butStopTracking.addEventListener("click", function () {
   message.innerHTML += `Tracking stopped. Total steps: ${Math.round(
     totalDistance
   )}.<br>`;
-  totalDistance = 0;
+
   console.log("Tracking stopped");
 });
 
@@ -143,8 +144,10 @@ function onLocationFound(e) {
       gender
     );
 
-    stepsDisplay.textContent = calculateSteps(totalDistance);
-    caloriesDisplay.textContent = caloriesBurned;
+    burnCalories = caloriesBurned;
+
+    console.log(caloriesBurned, "verbrande cals");
+    // caloriesDisplay.textContent = 25;
 
     console.log(`Speed: ${speed.toFixed(2)} km/h`);
     message.innerHTML += `Speed: ${speed.toFixed(2)} km/h<br>`;
@@ -159,10 +162,8 @@ function onLocationFound(e) {
 
   countLoc > 4 ? (message.innerHTML += `Lat Lon: ${latlng}<br>`) : 1 + 2;
 
-  const totalSteps = calculateSteps(totalDistance);
-
-  stepsDisplay.textContent = totalSteps;
-  caloriesDisplay.textContent = caloriesBurned;
+  stepsDisplay.textContent = calculateSteps(totalDistance);
+  caloriesDisplay.textContent = burnCalories;
 }
 
 function onLocationError(e) {
