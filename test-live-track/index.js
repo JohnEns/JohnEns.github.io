@@ -261,7 +261,8 @@ if (navigator.geolocation) {
       }
 
       // Start the simulation
-      simulateRoute(testRoute);
+      // simulateRoute(testRoute);
+      liveTrack(map);
     },
     function () {
       alert(`Could not get your location.`);
