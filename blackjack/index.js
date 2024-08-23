@@ -152,14 +152,14 @@ function renderGame() {
 
   //CASH OUT!
   if (hasBlackJack === true) {
-    console.log("Pay Out initiated.");
-    subMess.textContent = "Pay Out initiated.";
+    // console.log("Pay Out 150 chips initiated. 🥳");
+    subMess.textContent = "Pay Out 150 chips initiated. 🥳";
     hasBlackJack === false;
   }
 
   if (isAlive === false) {
     // console.log("Money deducted from account.");
-    subMess.textContent = "Money deducted from account.";
+    subMess.textContent = "Chips deducted from account. 😢";
   }
 }
 
