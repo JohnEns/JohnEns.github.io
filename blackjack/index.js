@@ -70,22 +70,22 @@ function startGame() {
   // Generate two random numbers
   // Re-assign the cards and sum variables so that the game can start
 
-  let firstCardTEST = new Card(
+  let firstCard = new Card(
     getRandomCard(),
     suits[`${Math.floor(Math.random() * 4)}`]
   );
   // let firstCard = getRandomCard();
   // let suit = suits[`${Math.floor(Math.random() * 4)}`];
-  console.log(firstCardTEST);
+  // console.log(firstCardTEST);
 
-  let secondCardTEST = new Card(
+  let secondCard = new Card(
     getRandomCard(),
     suits[`${Math.floor(Math.random() * 4)}`]
   );
   // let secondCard = getRandomCard();
   // let firstCard = 10;
   // let secondCard = 11;
-  drawnCards = [firstCardTEST, secondCardTEST];
+  drawnCards = [firstCard, secondCard];
 
   renderGame();
 }
@@ -97,7 +97,7 @@ function renderGame() {
   for (i = 0; i < drawnCards.length; i++) {
     // console.log(drawnCards[i].src);  //LETOP
     // console.log(Object.keys(drawnCards[i]));
-    console.log(drawnCards[i]);
+    // console.log(drawnCards[i]);
 
     // check numbers for GAME interpretation
     let ranCd = drawnCards[i].value;
@@ -143,7 +143,7 @@ function renderGame() {
     message = "You lost the game. Want to try again?";
     sndGameOver.play();
     player.chips -= 10;
-    console.log("CHIPSSSSS: " + player.chips);
+    // console.log("CHIPSSSSS: " + player.chips);
     subMess.textContent = "You just lost 10 chips 😓";
     playerEl.textContent = player.name + ": $" + player.chips;
   }
@@ -158,7 +158,7 @@ function renderGame() {
   }
 
   if (isAlive === false) {
-    console.log("Money deducted from account.");
+    // console.log("Money deducted from account.");
     subMess.textContent = "Money deducted from account.";
   }
 }
@@ -166,7 +166,7 @@ function renderGame() {
 function newCard() {
   if (isAlive === true && hasBlackJack === false) {
     sndNewCard.play();
-    console.log("Drawing a new card from the deck!");
+    // console.log("Drawing a new card from the deck!");
     subMess.textContent = "Drawing a new card from the deck!";
     // 1. Create a card variable, and hard code its value to a number (2-11)
     // let newDraw = getRandomCard();
