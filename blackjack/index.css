@@ -39,3 +39,21 @@ h1 {
   color: bisque;
   font-size: 30px;
 }
+
+#submessage {
+  color: rgba(255, 136, 0, 0.87);
+}
+
+.image-container {
+  display: flex;
+  justify-content: center; /* Centers the images horizontally */
+  align-items: center; /* Centers the images vertically within the container */
+}
+.image-container img {
+  margin-right: 10px; /* Optional: space between images */
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+}

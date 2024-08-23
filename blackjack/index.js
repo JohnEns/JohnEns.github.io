@@ -9,6 +9,12 @@ let isAlive = false;
 let firstRnd = true;
 
 let drawnCards = [];
+const suits = [
+  "_of_hearts.png",
+  "_of_clubs.png",
+  "_of_diamonds.png",
+  "_of_spades.png",
+];
 let sum = 0;
 
 let message = "";
@@ -16,10 +22,21 @@ let message = "";
 const msg = document.getElementById("message-el");
 const cardEl = document.getElementById("cards");
 const sumEl = document.getElementById("sum");
+const subMess = document.getElementById("submessage");
+const imgCont = document.querySelector(".image-container");
+const card1 = document.getElementById("card1");
+const card2 = document.getElementById("card2");
 
 let player = {
   name: "Player 1",
   chips: 145,
+};
+
+const Card = function (value, suit) {
+  this.value = value;
+  this.suit = suit;
+
+  this.src = `${this.value}${this.suit}`;
 };
 
 const playerEl = document.getElementById("player-el");
@@ -31,25 +48,34 @@ function getRandomCard() {
   // if 11-13 -> return 10
   let ranCd = Math.floor(Math.random() * 13) + 1;
   console.log(ranCd);
-  if (ranCd === 1) {
-    return 11;
-  } else if (ranCd >= 11) {
-    return 10;
-  } else {
-    return ranCd;
-  }
+  return ranCd;
 }
 
-console.log("Random BS GO 13!!!: " + getRandomCard());
+// console.log("Random BS GO 13!!!: " + getRandomCard());
 
 function startGame() {
+  subMess.textContent = "...";
+  hasBlackJack === false;
   isAlive = true;
   // Generate two random numbers
   // Re-assign the cards and sum variables so that the game can start
 
-  let firstCard = getRandomCard();
-  let secondCard = getRandomCard();
-  drawnCards = [firstCard, secondCard];
+  let firstCardTEST = new Card(
+    getRandomCard(),
+    suits[`${Math.floor(Math.random() * 4)}`]
+  );
+  // let firstCard = getRandomCard();
+  // let suit = suits[`${Math.floor(Math.random() * 4)}`];
+  console.log(firstCardTEST);
+
+  let secondCardTEST = new Card(
+    getRandomCard(),
+    suits[`${Math.floor(Math.random() * 4)}`]
+  );
+  // let secondCard = getRandomCard();
+  // let firstCard = 10;
+  // let secondCard = 11;
+  drawnCards = [firstCardTEST, secondCardTEST];
 
   renderGame();
 }
@@ -59,11 +85,39 @@ function renderGame() {
   sum = 0;
 
   for (i = 0; i < drawnCards.length; i++) {
-    cardEl.textContent += drawnCards[i] + " ";
-    sum += drawnCards[i];
+    // console.log(drawnCards[i].src);  //LETOP
+    // console.log(Object.keys(drawnCards[i]));
+    console.log(drawnCards[i]);
+
+    // check numbers for GAME interpretation
+    let ranCd = drawnCards[i].value;
+    if (ranCd === 1) {
+      ranCd = 11;
+    } else if (ranCd >= 11) {
+      ranCd = 10;
+    }
+    cardEl.textContent += ranCd + " ";
+    sum += ranCd;
   }
 
+  // card1.classList.add("hidden");
+  // card2.classList.add("hidden");
+  imgCont.replaceChildren();
+  drawnCards.forEach((card) => {
+    // Create an image element
+    let imgElement = document.createElement("img");
+
+    // Set the source, alt, and width attributes
+    imgElement.src = `images/cards/${card.src}`;
+    imgElement.alt = "card";
+    imgElement.width = 200;
+
+    // Append the image to the container
+    imgCont.appendChild(imgElement);
+  });
+
   sumEl.textContent = `Sum: ${sum}`;
+  subMess.textContent = "...";
 
   if (sum <= 20) {
     message = "Do you want to draw a new card?";
@@ -78,6 +132,7 @@ function renderGame() {
     message = "You lost the game. Want to try again?";
     player.chips -= 10;
     console.log("CHIPSSSSS: " + player.chips);
+    subMess.textContent = "You just lost 10 chips 😓";
     playerEl.textContent = player.name + ": $" + player.chips;
   }
   msg.textContent = message;
@@ -86,19 +141,26 @@ function renderGame() {
   //CASH OUT!
   if (hasBlackJack === true) {
     console.log("Pay Out initiated.");
+    subMess.textContent = "Pay Out initiated.";
     hasBlackJack === false;
   }
 
   if (isAlive === false) {
     console.log("Money deducted from account.");
+    subMess.textContent = "Money deducted from account.";
   }
 }
 
 function newCard() {
   if (isAlive === true && hasBlackJack === false) {
     console.log("Drawing a new card from the deck!");
+    subMess.textContent = "Drawing a new card from the deck!";
     // 1. Create a card variable, and hard code its value to a number (2-11)
-    let newDraw = getRandomCard();
+    // let newDraw = getRandomCard();
+    let newDraw = new Card(
+      getRandomCard(),
+      suits[`${Math.floor(Math.random() * 4)}`]
+    );
     sum += newDraw;
     drawnCards.push(newDraw);
     renderGame();
