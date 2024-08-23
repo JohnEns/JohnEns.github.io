@@ -174,7 +174,7 @@ function newCard() {
       getRandomCard(),
       suits[`${Math.floor(Math.random() * 4)}`]
     );
-    sum += newDraw;
+    // sum += newDraw;
     drawnCards.push(newDraw);
     renderGame();
   }
