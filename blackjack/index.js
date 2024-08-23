@@ -13,16 +13,16 @@ let sum = 0;
 
 let message = "";
 
-let msg = document.getElementById("message-el");
-let cardEl = document.getElementById("cards");
-let sumEl = document.getElementById("sum");
+const msg = document.getElementById("message-el");
+const cardEl = document.getElementById("cards");
+const sumEl = document.getElementById("sum");
 
 let player = {
   name: "Player 1",
   chips: 145,
 };
 
-let playerEl = document.getElementById("player-el");
+const playerEl = document.getElementById("player-el");
 playerEl.textContent = player.name + ": $" + player.chips;
 
 // Make this function return a random number between 1 and 13
@@ -86,6 +86,7 @@ function renderGame() {
   //CASH OUT!
   if (hasBlackJack === true) {
     console.log("Pay Out initiated.");
+    hasBlackJack === false;
   }
 
   if (isAlive === false) {
