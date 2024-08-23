@@ -27,6 +27,14 @@ const imgCont = document.querySelector(".image-container");
 const card1 = document.getElementById("card1");
 const card2 = document.getElementById("card2");
 
+// Sounds
+const sndWinGame = new Audio("/snd/win-game.mp3");
+const sndGameOver = new Audio("/snd/game-over.mp3");
+const sndError = new Audio("/snd/fout.mp3");
+const sndNewCard = new Audio("/snd/yoink.mp3");
+// const sndRollDice = new Audio('/snd/dice-rolling.mp3');
+const sndNewGame = new Audio("/snd/newGame.mp3");
+
 let player = {
   name: "Player 1",
   chips: 145,
@@ -54,8 +62,10 @@ function getRandomCard() {
 // console.log("Random BS GO 13!!!: " + getRandomCard());
 
 function startGame() {
+  sndNewGame.play();
+
   subMess.textContent = "...";
-  hasBlackJack === false;
+  hasBlackJack = false;
   isAlive = true;
   // Generate two random numbers
   // Re-assign the cards and sum variables so that the game can start
@@ -125,11 +135,13 @@ function renderGame() {
     hasBlackJack = true;
     message = "CONGRATULATIONS!! You've got Blackjack!";
     alert("Blackjack");
+    sndWinGame.play();
     player.chips += 150;
     playerEl.textContent = player.name + ": $" + player.chips;
   } else {
     isAlive = false;
     message = "You lost the game. Want to try again?";
+    sndGameOver.play();
     player.chips -= 10;
     console.log("CHIPSSSSS: " + player.chips);
     subMess.textContent = "You just lost 10 chips 😓";
@@ -153,6 +165,7 @@ function renderGame() {
 
 function newCard() {
   if (isAlive === true && hasBlackJack === false) {
+    sndNewCard.play();
     console.log("Drawing a new card from the deck!");
     subMess.textContent = "Drawing a new card from the deck!";
     // 1. Create a card variable, and hard code its value to a number (2-11)
