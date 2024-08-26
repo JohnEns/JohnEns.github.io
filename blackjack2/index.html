@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BlackJack Game</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <h1>BlackJack Game</h1>
+    <h2 id="message-el">Want to play a round?</h2>
+    <p id="submessage">...</p>
+    <div class="image-container">
+      <img
+        id="card1"
+        src="images/cards/joker_red.png"
+        alt="Card 1"
+        width="200"
+      />
+      <img
+        id="card2"
+        src="images/cards/joker_black.png"
+        alt="Card 2"
+        width="200"
+      />
+    </div>
+    <p id="cards">Cards:</p>
+    <p id="sum">Sum:</p>
+
+    <p><button class="button" onclick="startGame()">START GAME</button></p>
+    <button id = 'butNewCard' class="button" onclick="newCard()">NEW CARD</button>
+    <p id="player-el"></p>
+    <script src="index.js"></script>
+  </body>
+</html>
