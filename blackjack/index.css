@@ -48,9 +48,29 @@ h1 {
   display: flex;
   justify-content: center; /* Centers the images horizontally */
   align-items: center; /* Centers the images vertically within the container */
+  /*
+  width: 300px; /* Example container width */
+  /*  height: 428px; /* Example container height */
+  /* position: relative;*/
+  overflow: hidden;
 }
 .image-container img {
   margin-right: 10px; /* Optional: space between images */
+}
+
+.card-container {
+  width: 300px; /* Example container width */
+  height: 428px; /* Example container height */
+  position: relative;
+  overflow: hidden;
+}
+
+.card {
+  width: 315px; /* Card width (4096px / 13 cards) */
+  height: 464px; /* Card height (1856px / 4 suits) */
+  background-image: url("images/cards/card-sprite.png"); /* Path to your sprite */
+  background-size: 4096px 1856px; /* Full size of the sprite sheet */
+  /* position: absolute; */
 }
 
 .hidden {

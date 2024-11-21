@@ -27,6 +27,18 @@ const imgCont = document.querySelector(".image-container");
 const card1 = document.getElementById("card1");
 const card2 = document.getElementById("card2");
 
+// Card dimensions from the sprite sheet
+const CARD_WIDTH = 315; // 4096 / 13
+const CARD_HEIGHT = 464; // 1856 / 4
+
+// Suits and their corresponding row index in the sprite
+const suitsOb = {
+  spades: 0,
+  hearts: 1,
+  diamonds: 2,
+  clubs: 3,
+};
+
 // Sounds
 const sndWinGame = new Audio("/snd/win-game.mp3");
 const sndGameOver = new Audio("/snd/game-over.mp3");
@@ -49,6 +61,22 @@ const Card = function (value, suit) {
 
 const playerEl = document.getElementById("player-el");
 playerEl.textContent = player.name + ": $" + player.chips;
+
+// Function to display a specific card
+function showCard(suit, rank) {
+  const cardElement = document.createElement("div");
+  cardElement.classList.add("card");
+
+  // Calculate the background position
+  const x = (rank - 1) * CARD_WIDTH; // rank is from 1 (Ace) to 13 (King)
+  const y = suitsOb[suit] * CARD_HEIGHT; // suit is from the suits object
+
+  // Apply background position
+  cardElement.style.backgroundPosition = `-${x}px -${y}px`;
+
+  // Add the card to the container
+  document.getElementById("cardContainer").appendChild(cardElement);
+}
 
 // Make this function return a random number between 1 and 13
 function getRandomCard() {
@@ -179,3 +207,8 @@ function newCard() {
     renderGame();
   }
 }
+
+showCard("spades", 1);
+showCard("clubs", 1);
+showCard("clubs", 13);
+showCard("hearts", 13);
