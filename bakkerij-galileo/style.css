@@ -1,5 +1,6 @@
 html,
 body {
+  width: 100%;
   place-items: center;
   color: #1e1e20;
   margin: 0;
@@ -78,9 +79,17 @@ h3 {
   }
 }
 
+.container {
+  display: flex;
+  width: 1250px;
+}
+
 .nav {
   display: flex;
   justify-content: space-between;
+  align-items: stretch;
+
+  flex: 1;
 
   margin: 0;
   padding: 0;
@@ -92,6 +101,7 @@ h3 {
 
 .nav-menu {
   display: grid;
+  margin-top: 15px;
 }
 
 ul {
@@ -129,6 +139,15 @@ ul {
   /* font-weight: bold;  */
   text-decoration-color: #bf9d39;
   text-decoration-thickness: 2px;
+}
+
+.total-width {
+  margin: 0 0 200px;
+  padding: 0;
+  width: 100%;
+  background-color: red;
+  height: 200px;
+  /* margin-bottom: 200px;  */
 }
 
 .head-home {
