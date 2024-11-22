@@ -1,46 +1,64 @@
 "use strict";
 
+//Selecteer alle nav links
+const headerNav = document.querySelector("header .nav");
+const links = headerNav.querySelectorAll(".nav-list a");
+
+console.log(links);
+console.log(links[1].href);
+console.log(links[1].baseURI);
+
+for (let i = 0; i < links.length; i++) {
+  // const linkPath = links[i].getAttribute("href").replace(/\/$/, "");
+
+  if (links[i].href === links[i].baseURI) {
+    links[i].classList.add("active");
+    break;
+  }
+}
+
 const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 const phoneRegex = /^(\+31|0)(6[\-]?\d{8})$/;
 
-document.querySelectorAll(".nav-list a").forEach((link) => {
-  const linkPath = link.getAttribute("href").replace(/\/$/, "");
-  const currentPath = window.location.pathname.replace(/\/$/, "");
+document.addEventListener("DOMContentLoaded", function () {
+  const currentPath = window.location.pathname;
 
-  console.log(linkPath);
-  console.log(currentPath);
+  // Registreer de pagina in de console
+  console.log(`De gebruiker bevindt zich op: ${currentPath}`); //check of t klopt
 
-  if (linkPath === currentPath) {
-    link.classList.add("active");
-  }
-});
-
-document
-  .getElementById("form-contact")
-  .addEventListener("submit", function (event) {
-    event.preventDefault();
-
+  if (currentPath === "/contact.html") {
+    console.log("We zijn er!");
     const errorMessageMail = document.getElementById("error-message-mail");
     const errorMessagePhone = document.getElementById("error-message-phone");
 
+    console.log(errorMessageMail);
+    console.log(errorMessagePhone);
+
     errorMessageMail.style.display = errorMessagePhone.style.display = "none";
 
-    let emailInput = document.getElementById("email").value;
-    let phoneInput = document.getElementById("phone").value;
+    document
+      .getElementById("form-contact")
+      .addEventListener("submit", function (event) {
+        event.preventDefault();
 
-    if (emailRegex.test(emailInput)) {
-      errorMessageMail.style.display = "none";
-    } else {
-      errorMessageMail.style.display = "block";
-    }
+        let emailInput = document.getElementById("email").value;
+        let phoneInput = document.getElementById("phone").value;
 
-    if (phoneRegex.test(phoneInput)) {
-      errorMessagePhone.style.display = "none";
-    } else {
-      errorMessagePhone.style.display = "block";
-    }
+        if (emailRegex.test(emailInput)) {
+          errorMessageMail.style.display = "none";
+        } else {
+          errorMessageMail.style.display = "block";
+        }
 
-    if (emailRegex.test(emailInput) && phoneRegex.test(phoneInput)) {
-      alert("Formulier succesvol verzonden!");
-    }
-  });
+        if (phoneRegex.test(phoneInput)) {
+          errorMessagePhone.style.display = "none";
+        } else {
+          errorMessagePhone.style.display = "block";
+        }
+
+        if (emailRegex.test(emailInput) && phoneRegex.test(phoneInput)) {
+          alert("Formulier succesvol verzonden!");
+        }
+      });
+  }
+});

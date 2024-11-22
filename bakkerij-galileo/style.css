@@ -320,6 +320,11 @@ textarea:focus {
   outline: none;
 }
 
+.error {
+  color: red;
+  font-size: 18px;
+}
+
 #verzend {
   float: right;
 }
