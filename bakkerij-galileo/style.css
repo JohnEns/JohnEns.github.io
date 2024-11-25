@@ -188,7 +188,7 @@ height: 6vh;
 .nav-list a {
   text-decoration: none;
   /* font-size: 1.2rem; DOUBLE CHECK*/
-  /* color:| #1E1E20;  DOUBLE CHECK*/
+  color: #1E1E20; 
   padding: 0.5rem 1rem;
   transition: background-color 0.3s;
 }
