@@ -24,22 +24,21 @@ h1 {
   font-family: Lato;
   font-size: 80px;
   line-height: 1.05;
-    font-weight: lighter;
-
+  font-weight: lighter;
 }
 
 h2 {
   font-family: Lato;
   font-size: 30px;
   line-height: 1.1;
-    margin-top: 0;
+  margin-top: 0;
 }
 
 h3 {
   font-family: Lato;
   font-size: 24px;
   line-height: 1.1;
-    margin: 0;
+  margin: 0;
 }
 
 .large {
@@ -59,17 +58,15 @@ h3 {
     font-family: Lato;
     font-size: 55px;
     line-height: 1.05;
-	 
-	    font-weight: lighter; 
 
+    font-weight: lighter;
   }
 
   h2 {
     font-family: Lato;
     font-size: 30px;
     line-height: 1.1;
-	    margin-top: 0;
-
+    margin-top: 0;
   }
 
   h3 {
@@ -102,11 +99,6 @@ h3 {
   }
 }
 
-.container1 {
-  display: flex;
-  width: 1250px;
-}
-
 /* *************************** */
 
 .container {
@@ -132,7 +124,7 @@ h3 {
   align-content: flex-start;
 }
 
-#flexend {
+/* #flexend {
 }
 
 #center {
@@ -142,18 +134,18 @@ h3 {
 }
 
 #around {
-}
+} */
 
 /* *************************** */
 
 .nav {
-	  height: 100%;
+  height: 100%;
 
   display: flex;
   justify-content: space-between;
   margin: 0;
   padding: 0;
-  width: 1350px;
+  width: 1300px;
   /*  align-items: center;
   width: 100%; */
   max-width: 100%;
@@ -171,14 +163,14 @@ ul {
 }
 
 .nav-logo {
-height: 6vh;
+  height: 6vh;
   width: auto;
   /* text-align: left; */
 }
 
 .nav-list {
   display: flex;
-    align-items: center;
+  align-items: center;
 
   list-style: none;
   gap: 2rem;
@@ -189,23 +181,22 @@ height: 6vh;
 .nav-list a {
   text-decoration: none;
   /* font-size: 1.2rem; DOUBLE CHECK*/
-  color: #1E1E20; 
+  color: #1e1e20;
   padding: 0.5rem 1rem;
   transition: background-color 0.3s;
 }
 
 .nav-list a:hover {
-  background-color: #BF9D39;
+  background-color: #bf9d39;
 }
 
 .nav-list a.active {
   text-decoration: underline;
   /* font-weight: bold;  */
-  text-decoration-color: #BF9D39;
-    text-underline-offset: 8px;
+  text-decoration-color: #bf9d39;
+  text-underline-offset: 8px;
   text-decoration-thickness: 2px;
 }
-
 
 .head-home-container {
   height: 45vh;
@@ -213,7 +204,7 @@ height: 6vh;
 }
 
 .head-home {
- position: absolute;
+  position: absolute;
   left: 0;
   right: 0;
   filter: brightness(0.7);
@@ -238,7 +229,6 @@ height: 6vh;
   text-align: center;
 }
 
-
 .flex {
   display: flex;
   /* width: 800px; */
@@ -250,7 +240,7 @@ height: 6vh;
 }
 
 .text-img {
-  width: 500px;
+  width: 400px;
   /* max-height: 100%; */
   height: 70%;
   vertical-align: middle;
@@ -289,6 +279,11 @@ button:hover {
   height: 250px;
   width: 90%;
   object-fit: cover;
+  border: 1px solid gray;
+  filter: brightness(0.9);
+  margin: 20px auto 40px;
+
+  justify-content: center;
 
   background-position: center;
   /* werkt niet zoals verwacht */
@@ -321,7 +316,7 @@ button:hover {
 
 .pers {
   display: grid;
-  border: 4px solid #d8bc69;
+  border: 6px solid #d8bc69;
   margin: 20px 80px;
   padding: 30px;
 
@@ -344,14 +339,21 @@ button:hover {
   min-height: 400px;
 }
 
-.foot {
+.footer-background {
+  background-color: #bf9d39;
+  height: 13vh;
   position: absolute;
   left: 0;
   right: 0;
+  z-index: -100;
+}
+
+.foot {
   margin-top: 150px;
   display: flex;
-  background-color: #bf9d39;
   padding: 20px;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .contact {
@@ -369,6 +371,7 @@ button:hover {
   /* text-decoration-style: wavy; */
   text-decoration-color: #d8bc69;
   text-decoration-thickness: 2px;
+  text-underline-offset: 15px;
 }
 
 /* .open {
@@ -388,8 +391,7 @@ button:hover {
 
 .tijden p {
   border-left: #d8bc69 2px solid;
-    padding-left: 5px;
-
+  padding-left: 5px;
 }
 
 label {
