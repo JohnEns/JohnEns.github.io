@@ -103,6 +103,10 @@ p {
   .nav-list li {
     margin-bottom: 1rem;
   }
+
+  .head-home {
+    height: 30vh;
+  }
 }
 
 /* *************************** */
@@ -222,7 +226,7 @@ ul {
   margin: 0;
   height: 45vh;
   /* width: 100%; */
-  /* max-height: 400px; */
+  max-height: 400px;
   background-size: cover;
   background-position: center;
   display: flex;
