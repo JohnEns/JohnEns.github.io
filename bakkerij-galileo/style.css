@@ -59,7 +59,8 @@ h3 {
     font-family: Lato;
     font-size: 55px;
     line-height: 1.05;
-	    font-weight: lighter;
+	 
+	    font-weight: lighter; 
 
   }
 
@@ -194,13 +195,13 @@ height: 6vh;
 }
 
 .nav-list a:hover {
-  background-color: #d8bc69;
+  background-color: #BF9D39;
 }
 
 .nav-list a.active {
   text-decoration: underline;
   /* font-weight: bold;  */
-  text-decoration-color: #d8bc69;
+  text-decoration-color: #BF9D39;
     text-underline-offset: 8px;
   text-decoration-thickness: 2px;
 }
