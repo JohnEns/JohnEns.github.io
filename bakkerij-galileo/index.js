@@ -1,66 +1,62 @@
 "use strict";
 
-//Selecteer alle nav links
-const headerNav = document.querySelector("header .nav");
-const links = headerNav.querySelectorAll(".nav-list a");
-const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-const phoneRegex = /^(\+31|0)(6[\-]?\d{8})$/;
+(function onLoad() {
+	// Regex codes for input validation
+  const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+  const phoneRegex = /^(\+31|0)(6[\-]?\d{8})$/;
 
-//  Test voor code
-// console.log(links);
-// console.log(links[1].href);
-// console.log(links[1].baseURI);
+  document.querySelectorAll(".nav-list a").forEach((link) => {
+    const linkPath = link.getAttribute("href").replace(/\/$/, "");
+    const currentPath = window.location.pathname.replace(/\/$/, "");
 
-for (let i = 0; i < links.length; i++) {
-  if (links[i].href === links[i].baseURI) {
-    links[i].classList.add("active");
-    break;
+// Dev check data
+    console.log(linkPath);
+    console.log(currentPath);
+
+  // Assigns the 'active' class to the navigational links
+    if (currentPath.endsWith(linkPath)) {
+      link.classList.add("active");
+    }
+  });
+  
+  
+  let contactForm = document.getElementById("form-contact");
+
+// Check if on contact page
+  if (contactForm) {
+    contactForm.addEventListener("submit", function onSubmit(event) {
+      event.preventDefault();
+
+// Select error msgs  
+      const errorMessageMail = document.getElementById("error-message-mail");
+      const errorMessagePhone = document.getElementById("error-message-phone");
+
+// Make errors invisible
+      errorMessageMail.style.display = errorMessagePhone.style.display = "none";
+
+// Get input
+      let emailInput = document.getElementById("email").value;
+      let phoneInput = document.getElementById("phone").value;
+
+// Check input email
+      if (emailRegex.test(emailInput)) {
+        errorMessageMail.style.display = "none";
+      } else {
+        errorMessageMail.style.display = "block";
+      }
+
+// Check input phone number
+      if (phoneRegex.test(phoneInput)) {
+        errorMessagePhone.style.display = "none";
+      } else {
+        errorMessagePhone.style.display = "block";
+      }
+
+      if (emailRegex.test(emailInput) && phoneRegex.test(phoneInput)) {
+        alert("Formulier succesvol verzonden!");
+      }
+    });
   }
-}
+})();
 
-document.addEventListener("DOMContentLoaded", function () {
-  const currentPath = window.location.pathname;
-
-  // Registreer de pagina in de console
-  console.log(`De gebruiker bevindt zich op: ${currentPath}`); //check of t klopt
-
-  // Controleer juiste pagina om elementen te kunnen selecteren
-  if (currentPath === "/contact.html") {
-    // Eerst de errors selecteren
-    const errorMessageMail = document.getElementById("error-message-mail");
-    const errorMessagePhone = document.getElementById("error-message-phone");
-
-    // Check of je de elementen hebt
-    console.log(errorMessageMail);
-    console.log(errorMessagePhone);
-
-    // Error meldingen uitzetten
-    errorMessageMail.style.display = errorMessagePhone.style.display = "none";
-
-    document
-      .getElementById("form-contact")
-      .addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        let emailInput = document.getElementById("email").value;
-        let phoneInput = document.getElementById("phone").value;
-
-        // Test de gevoelige input.Iniden nodig : error!
-        if (emailRegex.test(emailInput)) {
-          errorMessageMail.style.display = "none";
-        } else {
-          errorMessageMail.style.display = "block";
-        }
-
-        if (phoneRegex.test(phoneInput)) {
-          errorMessagePhone.style.display = "none";
-        } else {
-          errorMessagePhone.style.display = "block";
-        }
-
-        if (emailRegex.test(emailInput) && phoneRegex.test(phoneInput)) {
-          alert("Formulier succesvol verzonden!");
-        }
-      });
-  }
-});
+  
