@@ -438,6 +438,7 @@ button:hover {
   text-decoration-color: #d8bc69;
   text-decoration-thickness: 2px;
   text-underline-offset: 15px;
+  margin-bottom: 30px;
 }
 
 /* .open {
