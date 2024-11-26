@@ -126,40 +126,52 @@ p {
 
 /* CSS voor cursus Codecademy */
 
+h1 {
+  font-size: 18px;
+}
+
+h2 {
+  font-size: 14px;
+}
+
+h1,
+h2 {
+  text-align: center;
+}
+
 .container {
-  height: 300px;
-  width: 600px;
-  background-color: whitesmoke;
-  display: flex;
-  flex-wrap: wrap;
-  margin: auto;
-}
-
-.left,
-.center,
-.right {
-  min-height: 75px;
-  width: 200px;
-  margin: 2px;
   background-color: dodgerblue;
-  border: 2px solid lightgrey;
+  display: flex;
+  flex-flow: column wrap;
+  max-height: 600px;
+  align-items: center;
+  justify-content: space-around;
 }
 
-#flexstart {
-  align-content: flex-start;
+.box {
+  background-color: whitesmoke;
+  border: 1px solid white;
+  width: 100px;
+  height: 100px;
+  /* flex-grow: 1; */
 }
 
-/* #flexend {
+#row {
+  flex-direction: row;
 }
 
-#center {
+#row-reverse {
+  flex-direction: row-reverse;
 }
 
-#between {
+#column {
+  flex-direction: column;
 }
 
-#around {
-} */
+#column-reverse {
+  flex-direction: column-reverse;
+  /* float: right; */
+}
 
 /* Eind CSS voor cursus Codecademy */
 
