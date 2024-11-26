@@ -10,6 +10,7 @@ header,
 footer {
   font-size: 1.5rem;
   height: 7vh;
+  min-height: 65px;
 }
 
 header {
@@ -61,6 +62,10 @@ p {
   margin-bottom: 0;
 }
 
+.medium-margin {
+  margin-bottom: 38px;
+}
+
 @media (min-width: 768px) {
   h1 {
     font-family: Lato;
@@ -94,6 +99,10 @@ p {
     font-size: 14px;
     line-height: 1.6;
   }
+
+  .flex {
+    flex-flow: row;
+  }
 }
 
 @media (max-width: 768px) {
@@ -107,7 +116,12 @@ p {
   }
 
   .nav-list li {
-    margin-bottom: 1rem;
+    padding-top: 10px;
+  }
+
+  .head-home-container {
+    height: 30vh;
+    margin-bottom: 6vh;
   }
 
   .head-home {
@@ -119,6 +133,10 @@ p {
     width: 100%;
     margin: 0;
     padding: 0;
+  }
+
+  .flex {
+    flex-flow: column;
   }
 }
 
@@ -166,6 +184,7 @@ p {
 /* *************************** */
 
 .nav {
+  align-items: center;
   height: 100%;
 
   display: flex;
@@ -190,9 +209,8 @@ ul {
 }
 
 .nav-logo {
-  height: 6vh;
+  height: 70%;
   width: auto;
-  /* text-align: left; */
 }
 
 .nav-list {
@@ -228,6 +246,7 @@ ul {
 .head-home-container {
   height: 45vh;
   margin-bottom: 12vh;
+  max-height: 400px;
 }
 
 .head-home {
@@ -257,21 +276,24 @@ ul {
   text-align: center;
 }
 
-.flex {
+.flex-container {
   display: flex;
-  /* width: 800px; */
+  flex-flow: column;
+  gap: 3rem;
+  margin-bottom: 12vh;
+}
 
-  gap: 1rem;
-  height: 400px;
-  /* margin: 400px auto; */
+.flex {
   align-content: center;
+  display: flex;
+  gap: 1rem;
 }
 
 .text-img {
+  height: 300px;
   width: 400px;
-  height: 70%;
-  vertical-align: middle;
   object-fit: cover;
+  object-position: center;
 }
 
 .flex-text {
@@ -369,7 +391,8 @@ button:hover {
   margin: 0;
   padding: 0;
   background-color: #bf9d39;
-  height: 13vh;
+  height: 7vh;
+  min-height: 65px;
   position: absolute;
   left: 0;
   right: 0;
