@@ -111,6 +111,11 @@ p {
 }
 
 @media (max-width: 768px) {
+  body {
+    font-size: 16px;
+    padding: 10px; /* Ruimte rondom de content */
+  }
+
   * {
     box-sizing: border-box;
   }
@@ -121,7 +126,36 @@ p {
   }
 
   .nav-list li {
-    padding-top: 10px;
+    /* padding-top: 10px; */
+
+    display: none; /* Verberg menu standaard */
+    flex-direction: column;
+    position: absolute;
+    top: 70px; /* Onder de navbar */
+    right: 0;
+    background-color: #ffffff;
+    width: 100%;
+    padding: 20px;
+  }
+
+  .nav-list.active {
+    display: flex; /* Toon het menu wanneer actief */
+  }
+
+  .nav-toggle {
+    display: flex; /* Toon de hamburger op mobiel */
+  }
+
+  .nav-toggle.open span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .nav-toggle.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-toggle.open span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
   }
 
   .head-home-container {
@@ -138,6 +172,24 @@ p {
     width: 100%;
     margin: 0;
     padding: 0;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .text-img,
+  .pers-img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  button {
+    font-size: 16px;
+    padding: 10px 20px;
+    width: 100%; /* Full-width knoppen voor mobiel */
   }
 
   .flex {
@@ -253,6 +305,23 @@ ul {
   text-underline-offset: 8px;
   text-decoration-thickness: 2px;
 }
+
+/* Hamburger-menu */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Eind Hamburger-menu */
 
 .head-home-container {
   height: 45vh;
