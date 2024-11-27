@@ -10,22 +10,13 @@
     const currentPath = window.location.pathname.replace(/\/$/, "");
 
     // Dev check data
-    console.log(linkPath);
-    console.log(currentPath);
+    // console.log(linkPath);
+    // console.log(currentPath);
 
     // Assigns the 'active' class to the navigational links
     if (currentPath.endsWith(linkPath)) {
       link.classList.add("active");
     }
-  });
-
-  // Hamburger mobiel
-  const navToggle = document.getElementById("nav-toggle");
-  const navList = document.querySelector(".nav-list");
-
-  navToggle.addEventListener("click", () => {
-    navList.classList.toggle("active"); // Toon/verberg het menu
-    navToggle.classList.toggle("open"); // Animeren van het icoon
   });
 
   let contactForm = document.getElementById("form-contact");
@@ -65,4 +56,15 @@
       }
     });
   }
+
+  // Hamburger mobiel
+  document.addEventListener("DOMContentLoaded", () => {
+    const navToggle = document.getElementById("nav-toggle");
+    const navList = document.querySelector(".nav-list");
+
+    navToggle.addEventListener("click", () => {
+      navList.classList.toggle("active");
+      navToggle.classList.toggle("open");
+    });
+  });
 })();

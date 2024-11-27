@@ -129,7 +129,7 @@ p {
   .nav-list li {
     /* padding-top: 10px; */
 
-    display: none; /* Verberg menu standaard */
+    /* display: none;  */
     flex-direction: column;
     position: absolute;
     top: 70px; /* Onder de navbar */
