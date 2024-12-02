@@ -71,181 +71,24 @@ p {
   margin-bottom: 38px;
 } */
 
-@media (min-width: 768px) {
-  h1 {
-    font-family: Lato;
-    font-size: 55px;
-    line-height: 1.05;
+/* *************************** */
 
-    font-weight: lighter;
-  }
-
-  h2 {
-    font-family: Lato;
-    font-size: 30px;
-    line-height: 1.1;
-    margin-top: 0;
-  }
-
-  h3 {
-    font-family: Lato;
-    font-size: 24px;
-    line-height: 1.1;
-  }
-
-  .large {
-    font-family: Roboto;
-    font-size: 18px;
-    line-height: 1.6;
-  }
-
-  .medium {
-    font-family: Roboto;
-    font-size: 14px;
-    line-height: 1.6;
-  }
-
-  .flex {
-    flex-flow: row;
-  }
+/* CSS voor cursus Codecademy */
+.end-test {
+  height: 150px;
 }
 
-@media (max-width: 768px) {
-  body {
-    font-size: 16px;
-    padding: 10px;
-    overflow-x: hidden;
-  }
+/* Eind CSS voor cursus Codecademy */
 
-  * {
-    box-sizing: border-box;
-  }
-
-  .nav-list {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .nav-list li {
-    /* padding-top: 10px; */
-
-    /* display: none;  */
-    flex-direction: column;
-    position: absolute;
-    top: 70px; /* Onder de navbar */
-    right: 0;
-    background-color: #ffffff;
-    width: 100%;
-    padding: 20px;
-  }
-
-  .nav-list.active {
-    display: flex; /* Toon het menu wanneer actief */
-  }
-
-  .nav-toggle {
-    display: flex; /* Toon de hamburger op mobiel */
-  }
-
-  .nav-toggle.open span:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-  }
-
-  .nav-toggle.open span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .nav-toggle.open span:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-  }
-
-  .head-home-container {
-    height: 30vh;
-    margin-bottom: 6vh;
-  }
-
-  .head-home {
-    height: 30vh;
-  }
-
-  .head-home,
-  .footer-background {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-  }
-
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .text-img,
-  .pers-img {
-    max-width: 100%;
-    height: auto;
-  }
-
-  button {
-    font-size: 16px;
-    padding: 10px 20px;
-    width: 100%; /* Full-width knoppen voor mobiel */
-  }
-
-  .flex {
-    flex-flow: column;
-  }
-
-  /* 2e!!! flex text reverse column   */
-}
+/* *************************** */
 
 main {
   margin-bottom: 20vh;
 }
 
-/* *************************** */
-
-/* CSS voor cursus Codecademy */
-
-.container {
-  height: 300px;
-  width: 600px;
-  background-color: whitesmoke;
-  display: flex;
-  flex-wrap: wrap;
-  margin: auto;
+.off-screen-menu {
+  display: none;
 }
-
-.left,
-.center,
-.right {
-  min-height: 75px;
-  width: 200px;
-  margin: 2px;
-  background-color: dodgerblue;
-  border: 2px solid lightgrey;
-}
-
-#flexstart {
-  align-content: flex-start;
-}
-
-/* #flexend {
-}
-
-#center {
-}
-
-#between {
-}
-
-#around {
-} */
-
-/* Eind CSS voor cursus Codecademy */
-
-/* *************************** */
 
 .nav {
   align-items: center;
@@ -307,22 +150,18 @@ ul {
   text-decoration-thickness: 2px;
 }
 
-/* Hamburger-menu */
-.nav-toggle {
-  display: none;
+.off-screen-menu {
+  right: -450px;
+  display: flex;
   flex-direction: column;
-  gap: 5px;
-  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
-.nav-toggle span {
-  display: block;
-  width: 25px;
-  height: 3px;
-  transition: all 0.3s ease-in-out;
+.off-screen-menu.active {
+  right: 0;
 }
-
-/* Eind Hamburger-menu */
 
 .head-home-container {
   height: 45vh;
@@ -578,4 +417,179 @@ textarea:focus {
 
 #verzend {
   float: right;
+}
+
+@media only screen and (min-width: 768px) {
+  h1 {
+    font-family: Lato;
+    font-size: 55px;
+    line-height: 1.05;
+
+    font-weight: lighter;
+  }
+
+  h2 {
+    font-family: Lato;
+    font-size: 30px;
+    line-height: 1.1;
+    margin-top: 0;
+  }
+
+  h3 {
+    font-family: Lato;
+    font-size: 24px;
+    line-height: 1.1;
+  }
+
+  .large {
+    font-family: Roboto;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  .medium {
+    font-family: Roboto;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .flex {
+    flex-flow: row;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  body {
+    font-size: 16px;
+    padding: 10px;
+    overflow-x: hidden;
+  }
+
+  /*  nav instelingewn  TESTERT */
+
+  .off-screen-menu {
+    width: 100%;
+    max-width: 450px;
+    position: fixed;
+    top: 0;
+    right: -450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 3rem;
+    transition: 0.3s ease;
+  }
+
+  .off-screen-menu.active {
+    right: 0;
+  }
+
+  .ham-menu {
+    display: block;
+    top: 0;
+  }
+
+  /* Hamburger-menu */
+  .ham-menu {
+    height: 50px;
+    width: 50px;
+    margin-left: auto;
+    position: relative;
+  }
+
+  .ham-menu span {
+    height: 5px;
+    width: 100%;
+    background-color: #d8bc69;
+    border-radius: 25px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: 0.3s ease;
+  }
+
+  .ham-menu span:nth-child(1) {
+    top: 25%;
+  }
+
+  .ham-menu span:nth-child(3) {
+    top: 75%;
+  }
+
+  .ham-menu.active span:nth-child(1) {
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  .ham-menu.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .ham-menu.active span:nth-child(3) {
+    top: 50%;
+    transform: translate(-50%, 50%) rotate(-45deg);
+  }
+
+  /* Eind Hamburger-menu */
+
+  /*  nav instelingewn  TESTERT */
+
+  .head-home-container {
+    height: 30vh;
+    margin-bottom: 6vh;
+  }
+
+  .head-home {
+    height: 30vh;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .head-home,
+  .footer-background {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .flex-container {
+    display: flex;
+    /* flex-wrap: wrap; */
+    justify-content: center;
+    width: 600px;
+  }
+
+  .flex,
+  .p-img {
+    /* width: 50%; */
+    height: 200px;
+    overflow: hidden;
+    display: flex;
+  }
+
+  .text-img,
+  .pers-img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .flex-text {
+    min-width: 500px;
+  }
+
+  button {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+
+  .flex {
+    flex-flow: column;
+  }
+
+  /* 2e!!! flex text reverse column   */
 }

@@ -42,20 +42,30 @@ https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css
           class="nav-logo"
         />
 
-        <div class="nav-toggle" id="nav-toggle">
-          <span>a</span>
-          <span>a</span>
-          <span>a</span>
-        </div>
-
         <ul class="nav-list">
           <li><a href="index.html">Home</a></li>
           <li><a href="over-ons.html">Over ons</a></li>
           <li><a href="contact.html">Contact</a></li>
+          <li><a href="test.html">Test</a></li>
         </ul>
       </div>
 
       <!-- eind .nav -->
+
+      <div class="off-screen-menu">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="over-ons.html">Over ons</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="test.html">Test</a></li>
+        </ul>
+      </div>
+
+      <div class="ham-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </header>
 
     <main>
@@ -71,12 +81,13 @@ https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css
 
       <div class="flex-container">
         <div class="flex">
-          <img
-            class="text-img"
-            src="img/Image-4.jpg"
-            alt="Bakker kneed brood"
-          />
-
+          <div class="flex-img-cont">
+            <img
+              class="text-img"
+              src="img/Image-4.jpg"
+              alt="Bakker kneed brood"
+            />
+          </div>
           <div class="flex-text">
             <h2>Over ons</h2>
             <p class="medium medium-margin">
@@ -120,11 +131,13 @@ https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css
             </p>
             <a href="contact.html"><button type="button">Lees Meer</button></a>
           </div>
-          <img
-            class="text-img"
-            src="img/Image-2.jpg"
-            alt="Meel, granen en zaden"
-          />
+          <div class="flex-img-cont">
+            <img
+              class="text-img"
+              src="img/Image-2.jpg"
+              alt="Meel, granen en zaden"
+            />
+          </div>
         </div>
       </div>
     </main>

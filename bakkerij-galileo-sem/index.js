@@ -58,13 +58,11 @@
   }
 
   // Hamburger mobiel
-  document.addEventListener("DOMContentLoaded", () => {
-    const navToggle = document.getElementById("nav-toggle");
-    const navList = document.querySelector(".nav-list");
+  const hamMenu = document.querySelector(".ham-menu");
+  const offScreenMenu = document.querySelector(".off-screen-menu");
 
-    navToggle.addEventListener("click", () => {
-      navList.classList.toggle("active");
-      navToggle.classList.toggle("open");
-    });
+  hamMenu.addEventListener("click", () => {
+    hamMenu.classList.toggle("active");
+    offScreenMenu.classList.toggle("active");
   });
 })();
