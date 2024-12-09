@@ -7,7 +7,7 @@
       name="description"
       content="Bakkerij in Capelle a/d IJssel met het lekkerste brood en het meest kundige personeel"
     />
-    <title>Over ons</title>
+    <title>Bakkerij - Over ons</title>
     
     <link href="
 https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css
@@ -32,31 +32,47 @@ https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css
       rel="stylesheet"
       type="text/css"
     />
-
+    <script src="index.js" defer></script>
   </head>
   <body>
     <header>
-      <div class="nav">
-        <img
-          src="img/logo/logo_small.png"
-          alt="Logo Bakkerij"
-          class="nav-logo"
-        />
+			<div class="width-control">
+				<div class="logo">
+					<img
+						src="./img/logo/logo_small.png"
+						alt="Logo Bakkerij"
+						class="nav-logo"
+					/>
+				</div>
+        <div class="big-screen">
+					<ul class="nav-list" id="nav-list-header">
+						<li><a href="index.html">Home</a></li>
+						<li><a href="over-ons.html">Over ons</a></li>
+						<li><a href="contact.html">Contact</a></li>
+					</ul>
+				</div>
+        <div class="off-screen-menu">
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="over-ons.html">Over ons</a></li>
+						<li><a href="contact.html">Contact</a></li>
+					</ul>
+				</div>
 
-        <div class="nav-menu">
-          <ul class="nav-list">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="over-ons.html">Over ons</a></li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
-        </div>
-      </div>
-    </header>
+				<div class="hamnav">
+					<div class="ham-menu">
+						<span></span>
+						<span></span>
+						<span></span>
+					</div>
+				</div>
+				<!-- eind .hamnav -->
+			</div>
+			<!-- eind .width-control -->
+		</header>
     <main>
-   <div class="head-home-container">
-        <div class="head-home" style="background-image: url('img/Image-4.jpg')">
-        </div>
-        <div class="head-home-text">
+   <div class="head-ons-container">
+            <div class="head-home-text">
           <h1>Over ons</h1>
         </div>
       </div>
@@ -165,17 +181,16 @@ https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css
       </div>
     </main>
     <footer>
-      <div class="footer-background"></div>
-      <div class="nav">
-        <div><span>© 2021 &mdash; Bakkerij</span></div>
+			<div class="width-control-footer">
+				<div><span>&copy; 2024 &mdash; Bakkerij</span></div>
 
-        <ul class="nav-list">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="over-ons.html">Over ons</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-    </footer>
-    <script src="index.js" async></script>
+				<ul class="nav-list">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="over-ons.html">Over ons</a></li>
+					<li><a href="contact.html">Contact</a></li>
+				</ul>
+			</div>
+		</footer>
+  
   </body>
 </html>
