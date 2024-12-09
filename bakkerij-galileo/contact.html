@@ -7,7 +7,7 @@
 			name="description"
 			content="Bakkerij in Capelle a/d IJssel met het lekkerste brood en het meest kundige personeel"
 		/>
-		<title>Bakkerij - Home</title>
+		<title>Bakkerij - Contact</title>
 		<link
 			href="
 https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css
@@ -31,32 +31,47 @@ https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css
 			rel="stylesheet"
 			type="text/css"
 		/>
+		<script src="index.js" defer></script>
 	</head>
 	<body>
 		<header>
-			<div class="nav">
-				<img
-					src="img/logo/logo_small.png"
-					alt="Logo Bakkerij"
-					class="nav-logo"
-				/>
-
-				<div class="nav-menu">
-					<ul class="nav-list">
+			<div class="width-control">
+				<div class="logo">
+					<img
+						src="./img/logo/logo_small.png"
+						alt="Logo Bakkerij"
+						class="nav-logo"
+					/>
+				</div>
+				<div class="big-screen">
+					<ul class="nav-list" id="nav-list-header">
 						<li><a href="index.html">Home</a></li>
 						<li><a href="over-ons.html">Over ons</a></li>
 						<li><a href="contact.html">Contact</a></li>
 					</ul>
 				</div>
+				<div class="off-screen-menu">
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="over-ons.html">Over ons</a></li>
+						<li><a href="contact.html">Contact</a></li>
+					</ul>
+				</div>
+
+				<div class="hamnav">
+					<div class="ham-menu">
+						<span></span>
+						<span></span>
+						<span></span>
+					</div>
+				</div>
+				<!-- eind .hamnav -->
 			</div>
+			<!-- eind .width-control -->
 		</header>
 
 		<main>
-			<div class="head-home-container">
-				<div
-					class="head-home"
-					style="background-image: url('img/Image-3.jpg')"
-				></div>
+			<div class="head-contact-container">
 				<div class="head-home-text">
 					<h1>Contact</h1>
 				</div>
@@ -66,22 +81,24 @@ https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css
 					<div class="line">
 						<h2>Hier kunt u ons vinden!</h2>
 					</div>
-					<br />
 
-					<h3>Adres</h3>
-					<p class="large">Hollandsch Diep 61c</p>
-					<p class="large">2904 EP, Capelle aan den IJssel</p>
-					<br />
-					<br />
-					<h3>Telefoonnummer</h3>
-					<p class="large">+31 612345678</p>
-					<br />
-					<br />
-					<h3>Email</h3>
-					<p class="large">Info@bakkerij.nl</p>
-					<br />
-					<br />
-					<div class=".open">
+					<div class="row-div">
+						<h3>Adres</h3>
+						<p class="large">Hollandsch Diep 61c</p>
+						<p class="large">2904 EP, Capelle aan den IJssel</p>
+					</div>
+
+					<div class="row-div">
+						<h3>Telefoonnummer</h3>
+						<p class="large">+31 612345678</p>
+					</div>
+
+					<div class="row-div">
+						<h3>Email</h3>
+						<p class="large">Info@bakkerij.nl</p>
+					</div>
+
+					<div class="open">
 						<h3>Openingstijden</h3>
 						<div class="open-tabel">
 							<div class="dagen">
@@ -110,8 +127,8 @@ https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css
 					<!-- open -->
 				</div>
 
-				<div class="form">
-					<form id="form-contact">
+				<div class="form" id="form">
+					<form method="POST" id="form-contact">
 						<label for="name"><h3>Naam</h3></label><br />
 						<input type="text" id="name" name="name" /><br />
 
@@ -136,9 +153,8 @@ https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css
 			</div>
 		</main>
 		<footer>
-			<div class="footer-background"></div>
-			<div class="nav">
-				<div><span>© 2021 &mdash; Bakkerij</span></div>
+			<div class="width-control-footer">
+				<div><span>&copy; 2024 &mdash; Bakkerij</span></div>
 
 				<ul class="nav-list">
 					<li><a href="index.html">Home</a></li>
@@ -147,6 +163,5 @@ https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css
 				</ul>
 			</div>
 		</footer>
-		<script src="index.js" async></script>
 	</body>
 </html>
